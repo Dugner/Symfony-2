@@ -1,0 +1,6 @@
+Prepare Symfony Project for Production
+
+to instal git
+
+instal git zip and unzip with  (apt-get update)
+

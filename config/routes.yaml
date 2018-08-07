@@ -1,0 +1,23 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+homepage:
+  path:     /
+  controller: App\Controller\DefaultController::homepage
+
+task_list:
+  path:     /tasks
+  controller: App\Controller\TaskController::listTasks
+  
+task_detail:
+  path:     /task/detail
+  controller: App\Controller\TaskController::taskDetail
+  
+project_list:
+  path:     /projects
+  controller: App\Controller\ProjectController::listProjects
+
+admin_default:
+  path:     /admin
+  controller: App\Controller\AdminController::default
