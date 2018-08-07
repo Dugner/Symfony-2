@@ -5,4 +5,9 @@
 	    {{ form(user_form) }}
 
     </div>
+    
+{% endblock %}
+ {% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/listUser.js') }}"></script>
 {% endblock %}

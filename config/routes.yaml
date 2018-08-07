@@ -21,3 +21,7 @@ project_list:
 admin_default:
   path:     /admin
   controller: App\Controller\AdminController::default
+
+admin_user_list:
+  path:     /users.json
+  controller: App\Controller\AdminController::jsonUserList
