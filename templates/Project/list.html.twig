@@ -3,17 +3,16 @@
 {% block title %}wf3tm list of projects{% endblock %}
 
 {% block body %}
-
-	{% if projects is empty %}
-		<p>No projects found in the application</p>
-	{% else %}
+	<div class="container">
+	    {% if projects is empty %}
+			<p>No projects found in the application</p>
+		{% else %}
         <table class="table table-striped">
         	<thead>
         		<tr>
         			<th>Creation date</th>
         			<th>Title</th>
         			<th>Responsible</th>
-        			<th></th>
         		</tr>
         	</thead>
         	<tbody>
@@ -26,5 +25,16 @@
         		{% endfor %}
         	</tbody>
         </table>
-	{% endif %}
+		{% endif %}  
+    </div>
+
+
+	<div class="container">
+	    {{ form(project_list) }} 
+    </div>
+	
+
+	
+	
 {% endblock %}
+

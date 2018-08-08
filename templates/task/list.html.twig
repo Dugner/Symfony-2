@@ -3,7 +3,7 @@
 {% block title %}wf3tm list of tasks{% endblock %}
 
 {% block body %}
-
+<div class="container">
 	{% if tasks is empty %}
 		<p>No stask found in the application</p>
 	{% else %}
@@ -39,4 +39,6 @@
         	</tbody>
         </table>
 	{% endif %}
+	{{ form(task_form) }}
+	</div>
 {% endblock %}

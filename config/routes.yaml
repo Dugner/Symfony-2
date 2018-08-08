@@ -16,7 +16,7 @@ task_detail:
   
 project_list:
   path:     /projects
-  controller: App\Controller\ProjectController::listProjects
+  controller: App\Controller\ProjectController::projectTable
 
 admin_default:
   path:     /admin

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -20,22 +21,28 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank().
+     * @Assert\Length(min=3, max=255)
      */
     private $title;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     * @Assert\NotBlank().
+     * @Assert\Length(min=3, max=255)
      */
     private $worker;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank().
      */
     private $responsible;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="project", orphanRemoval=true)
+     * @Assert\NotBlank().
      */
     private $tasks;
 

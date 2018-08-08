@@ -5,46 +5,53 @@ namespace App\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Entity\Task;
+use App\Form\TaskFormType;
 
-class TaskController
+class TaskController extends Controller
 {
 
-    private $twig;
-    
-    public function __construct(
-        \Twig_Environment $twig
-    ) {
-        $this->twig = $twig;
-    }
-    
-    public function listTasks()
+    public function listTasks(Request $request)
     {
-        return new Response(
-            $this->twig->render(
-                'task/list.html.twig',
-                ['tasks' => []]
-            )
+        
+        $manager = $this->getDoctrine()->getManager();
+        $task = new Task();
+        $form = $this->createForm(
+
+            TaskFormType::class,
+            $task,
+            ['standalone' => true]
+        );
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+
+            $manager->persist($task);
+            $manager->flush();
+
+            return $this->redirectToRoute("task_list");
+        }
+
+
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $manager->getRepository(Task::class)->findAll(),
+            'task_form' => $form->createView()]
+            
         );
     }
     
     public function taskDetail(Request $request)
     {
         $id = $request->query->get('id');
-        
-        if (!$id) {
-            throw new NotFoundHttpException();
-        }
-        
-        $tasks = [];
-        if (!isset($tasks[$id])) {
-            throw new NotFoundHttpException();
-        }
-        
-        return new Response(
-            $this->twig->render(
+      
+        $manager = $this->getDoctrine()->getManager();
+        $task = $manager->getRepository(Task::class)->find($id);
+        return $this->render(
                 'task/detail.html.twig',
-                ['task'=>$tasks[$id]]
-            )
+                ['task'=> $task]
         );
+        
     }
 }

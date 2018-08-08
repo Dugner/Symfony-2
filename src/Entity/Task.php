@@ -46,18 +46,8 @@ class Task
      */
     private $project;
     
-    public function __construct(
-        string $title,
-        string $description,
-        User $author,
-        int $priority
-    ) {
+    public function __construct() {
         $this->creationDate = new \DateTime();
-        
-        $this->title = $title;
-        $this->description = $description;
-        $this->author = $author;
-        $this->priority = $priority;
     }
     
     public function getId()
@@ -75,7 +65,7 @@ class Task
         return $this->description;
     }
 
-    public function getAuthor() : User
+    public function getAuthor() : ?User
     {
         return $this->author;
     }
@@ -102,7 +92,7 @@ class Task
         return $this;
     }
 
-    public function setAuthor(User $author)
+    public function setAuthor(?User $author)
     {
         $this->author = $author;
         return $this;
