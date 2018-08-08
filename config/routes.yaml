@@ -25,3 +25,5 @@ admin_default:
 admin_user_list:
   path:     /users.json
   controller: App\Controller\AdminController::jsonUserList
+  options:
+    expose: true
