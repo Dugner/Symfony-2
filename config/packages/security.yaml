@@ -11,7 +11,7 @@ security:
 
     encoders:
         App\Entity\User:
-            algorihm:        bcrypt                 #we are using bcrypt for the password
+            algorithm:        bcrypt                 #we are using bcrypt for the password
             cost:            13
 
             # activate different ways to authenticate
