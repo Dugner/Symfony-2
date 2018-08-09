@@ -11,7 +11,6 @@ use App\Form\TaskFormType;
 
 class TaskController extends Controller
 {
-
     public function listTasks(Request $request)
     {
         
@@ -42,15 +41,22 @@ class TaskController extends Controller
         );
     }
     
-    public function taskDetail(Request $request)
+    public function taskDetail(Task $task, Request $request)
     {
-        $id = $request->query->get('id');
-      
-        $manager = $this->getDoctrine()->getManager();
-        $task = $manager->getRepository(Task::class)->find($id);
+        $form = $this->createForm(TaskFormType::class, $task, ['standalone' => true]);
+        $form -> handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())    {
+            
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('task_detail', ['task' => $task->getId()]);
+        }
+        
         return $this->render(
-                'task/detail.html.twig',
-                ['task'=> $task]
+            'task/detail.html.twig',
+            ['task'=> $task,
+            'form' => $form->createView()]
         );
         
     }

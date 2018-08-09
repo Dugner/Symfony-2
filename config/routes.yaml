@@ -11,7 +11,7 @@ task_list:
   controller: App\Controller\TaskController::listTasks
   
 task_detail:
-  path:     /task/detail
+  path:     /task/detail{task} #the id(task) is used to change the display of our path 
   controller: App\Controller\TaskController::taskDetail
   
 project_list:

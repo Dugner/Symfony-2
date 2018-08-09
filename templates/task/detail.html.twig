@@ -4,11 +4,21 @@
 
 {% block body %}
 	<div class="container">
-		<p>id : {{ task.getId() }}</p>
-		<p>created date : {{ task.getCreationDate()|date('Y-m-d H:i:s') }}</p>
-		<p>priority : {{ task.getPriority() }}</p>
-		<p>title : {{ task.getTitle() }}</p>
-		<p>description : {{ task.getDescription()|nl2br() }}</p>
-		<p>author : {{ task.getAuthor().getName() }}</p>
+		<ul class="list-group">
+			<li class="list-group-item list-group-item-primary"><p>id : Fuck You, I aint Giving you ID</p></li>
+			<li class="list-group-item list-group-item-warning"><p>created date : {{ task.getCreationDate()|date('Y-m-d H:i:s') }}</p></li>
+			<li class="list-group-item list-group-item-secondary"><p>priority : {{ task.getPriority() }}</p></li>
+			<li class="list-group-item list-group-item-success"><p>title : {{ task.getTitle() }}</p></li>
+			<li class="list-group-item list-group-item-dark"><p>description : {{ task.getDescription()|nl2br() }}</p></li>
+			<li class="list-group-item list-group-item-danger"><p>author : {{ task.getAuthor().getName() }}</p></li>
+		<ul>
+		
 	</div>
+	<div class="container">
+	<hr>
+	{{ form(form) }}
+	
+	</div>
+	
+	<hr>
 {% endblock %}
