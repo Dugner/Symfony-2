@@ -10,15 +10,28 @@
             <li class="nav-item active">
               <a class="nav-link" href="{{ path("homepage") }}">Home <span class="sr-only">(current)</span></a>
             </li>
+            {% if is_granted('ROLE_USER') %}
             <li class="nav-item active">
               <a class="nav-link" href="{{ path("project_list") }}">Lists of Project</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="{{ path("task_list") }}">List of Tasks</a>
             </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item active">
               <a class="nav-link" href="{{ path("admin_default") }}">Admin</a>
             </li>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path("logout") }}">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path("login") }}">Log In</a>
+            </li>
+            {% endif %}
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

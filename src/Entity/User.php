@@ -87,7 +87,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
+     * @return Role[]
      */
     public function getRole(): Collection
     {
@@ -113,7 +113,9 @@ class User implements UserInterface
     }
 
     public function getRoles(){
-        return $this->role;
+
+        return array_map('strval', $this->role->toArray());
+
     }
 
     public function getSalt(){
