@@ -4,6 +4,8 @@
 
 {% block body %}
 <div class="container">
+	{{ form(searchForm) }}
+	
 	{% if tasks is empty %}
 		<p>No stask found in the application</p>
 	{% else %}

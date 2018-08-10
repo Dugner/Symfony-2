@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Task;
 use App\Form\TaskFormType;
+use App\DTO\TaskSearch;
+use App\Form\TaskSearchFormType;
 
 class TaskController extends Controller
 {
@@ -32,11 +34,21 @@ class TaskController extends Controller
             return $this->redirectToRoute("task_list");
         }
 
+        $dto = new TaskSearch();
+        $searchForm = $this->createForm(TaskSearchFormType::class, $dto, ['standalone' => true]);
+
+        $searchForm -> handleRequest($request);
+    
+        $task = $manager->getRepository(Task::class)->findByTaskSearch($dto);
+     
 
         return $this->render(
             'task/list.html.twig',
-            ['tasks' => $manager->getRepository(Task::class)->findAll(),
-            'task_form' => $form->createView()]
+            [
+                'tasks' => $task,
+                'task_form' => $form->createView(),
+                'searchForm' => $searchForm->createView()
+            ]
             
         );
     }
