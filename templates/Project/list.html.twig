@@ -13,6 +13,7 @@
         			<th>Creation date</th>
         			<th>Title</th>
         			<th>Responsible</th>
+					<th>Picture</th>
         		</tr>
         	</thead>
         	<tbody>
@@ -21,6 +22,11 @@
         				<td>{{ project.getCreationDate()|date('Y-m-d H:i:s') }}</td>
         				<td>{{ project.getTitle() }}</td>
         				<td>{{ project.getResponsible().getName() }}</td>
+						{% if project.getThumbnail() is not empty %}
+							<td><img src="{{ path('download_document', {'document' : project.getThumbnail().getId()}) }}" width='40px'></td>
+						{% else %}
+							<td></td>
+						{% endif %}
         			</tr>
         		{% endfor %}
         	</tbody>

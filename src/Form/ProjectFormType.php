@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProjectFormType extends AbstractType
 {
@@ -21,11 +22,16 @@ class ProjectFormType extends AbstractType
             EntityType::class,
         ['class'=> User::class, 'choice_label' => 'name'])
             ->add('worker', 
-            EntityType::class,
-        ['class'=> User::class,
-         'choice_label' => 'name',
-         'expanded' => false,
-         'multiple' => true]);
+                EntityType::class,
+                ['class'=> User::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true])
+            ->add(
+                'thumbnail',
+                FileType::class,
+                ['required' => false]
+            );
 
         if($options['standalone']){
             $builder->add('submit', SubmitType::class, 

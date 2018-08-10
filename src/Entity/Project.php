@@ -155,12 +155,12 @@ class Project
         return $this->creationDate;
     }
 
-    public function getThumbnail(): ?Document
+    public function getThumbnail()
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?Document $thumbnail): self
+    public function setThumbnail($thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 
